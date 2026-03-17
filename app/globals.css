@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 98.5%;
+    --foreground: 220 15% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 15%;
+    --primary: 220 15% 15%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 220 10% 95%;
+    --secondary-foreground: 220 15% 15%;
+    --muted: 220 10% 95%;
+    --muted-foreground: 220 10% 45%;
+    --accent: 220 10% 94%;
+    --accent-foreground: 220 15% 15%;
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 12% 90%;
+    --input: 220 12% 90%;
+    --ring: 220 15% 15%;
+    --radius: 0.625rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ─────────────────────────────────────
+   React Flow overrides
+   ───────────────────────────────────── */
+
+/* Handles: hidden by default, fade in on hover/select */
+.diagram-canvas .react-flow__handle {
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+.diagram-canvas .react-flow__node:hover .react-flow__handle,
+.diagram-canvas .react-flow__node.selected .react-flow__handle {
+  opacity: 1;
+}
+.diagram-canvas .react-flow__handle:hover {
+  transform: scale(1.4);
+}
+
+/* Edges */
+.diagram-canvas .react-flow__edge-path {
+  stroke-width: 1.5;
+  transition: stroke 0.15s ease;
+}
+.diagram-canvas .react-flow__edge:hover .react-flow__edge-path,
+.diagram-canvas .react-flow__edge.selected .react-flow__edge-path {
+  stroke: hsl(220 15% 40%);
+  stroke-width: 2;
+}
+
+/* Selection box */
+.diagram-canvas .react-flow__selection {
+  background: hsl(220 15% 15% / 0.03);
+  border: 1px solid hsl(220 15% 15% / 0.12);
+  border-radius: 8px;
+}
+
+/* Nodes: subtle entrance */
+.diagram-canvas .react-flow__node {
+  transition: filter 0.15s ease;
+}
+.diagram-canvas .react-flow__node:hover {
+  filter: brightness(0.995);
+}
+
+/* Connection line */
+.diagram-canvas .react-flow__connection-path {
+  stroke: hsl(220 15% 60%);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 3;
+}
+
+/* Controls panel */
+.diagram-canvas .react-flow__controls {
+  gap: 2px;
+}
+.diagram-canvas .react-flow__controls button svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* Minimap */
+.diagram-canvas .react-flow__minimap {
+  border-radius: 12px;
+}
+
+/* Resize control */
+.diagram-canvas .react-flow__resize-control {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+.diagram-canvas .react-flow__node:hover .react-flow__resize-control,
+.diagram-canvas .react-flow__node.selected .react-flow__resize-control {
+  opacity: 1;
+}
+.diagram-canvas .react-flow__resize-control.handle {
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 2px !important;
+  background: hsl(0 0% 100%) !important;
+  border: 1.5px solid hsl(220 15% 15% / 0.25) !important;
+}
+.diagram-canvas .react-flow__resize-control.handle:hover {
+  border-color: hsl(220 15% 15% / 0.5) !important;
+  background: hsl(220 15% 15% / 0.05) !important;
+}
+
+/* Attribution hidden via pro options, but just in case */
+.diagram-canvas .react-flow__attribution {
+  display: none;
+}
+
+/* Pane cursor */
+.diagram-canvas .react-flow__pane {
+  cursor: default;
+}
+.diagram-canvas .react-flow__pane:active {
+  cursor: grabbing;
+}
+
+/* Animate-in utility for context menu */
+@keyframes animate-in-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.animate-in {
+  animation: animate-in-scale 0.1s ease-out forwards;
+}
