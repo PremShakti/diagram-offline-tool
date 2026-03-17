@@ -7,8 +7,13 @@ const _geist = Geist({ subsets: ['latin'] })
 const _geistMono = Geist_Mono({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Diagram Editor',
+  title: 'Diagram Offline Tool',
   description: 'A smooth, minimal diagram editor with infinite canvas',
+    icons: {
+    icon: '/dot.png',
+    shortcut: '/dot.png',
+    apple: '/dot.png',
+  },
 }
 
 export const viewport = {
